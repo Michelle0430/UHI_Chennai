@@ -13,11 +13,12 @@ chennai-urban-heat-risk/
 │   ├── /                 #
 │   └── /                #
 │
-├── 03_Reports/           # Integrative Reports
-│   ├── /                 # Reports
-│   └── /                # CBA Whitepaper
+├── 03_Reports/           # Reports
+│   ├── /                 # Integrated Reports
+│   ├── /                 # CBA Whitepaper
+│   └── /                # iTreee Report
 │
-├── 03_References/             # 
+├── 03_References/             # should we keep it or not
 │   ├── /   # 
 │   └──           # 
 │
