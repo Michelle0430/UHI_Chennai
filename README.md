@@ -13,7 +13,7 @@ chennai-urban-heat-risk/
 │   ├── README.md                                # Links for the story map and dashboard
 │
 ├── 03_Reports/
-│   ├── UHI_Integrated_Report.pdf                # Integrated Reports
+│   ├── UHI_Integrated_Report.pdf                # Integrated Report
 │   ├── User Research Knowledge Repository.pdf
 │   ├── Co-Benefits Analysis White Paper.pdf
 │   └── Chennai_iTreee_Report.pdf
