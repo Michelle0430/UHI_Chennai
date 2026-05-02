@@ -14,8 +14,8 @@ chennai-urban-heat-risk/
 │
 ├── 03_Reports/           # Reports
 │   ├── /                 # Integrated Reports
-│   ├── /                 # CBA White Paper
-│   └── /                # iTreee Report
+│   ├── Co-Benefits Analysis White Paper.pdf
+│   └── Chennai_iTreee_Report.pdf
 │
-└── README.md                       
+└── README.md             # Folder Guide
 ```
