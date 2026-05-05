@@ -30,7 +30,7 @@ Three quantitative indicators for healthy, livable cities:
 | **Parks (629)** | OpenCity Foundation & Greater Chennai Corporation (2024) | Point features<br>Categories: Small/Medium/Large | 300m accessibility analysis |
 | **Road Network** | OpenStreetMap (2024) | ~8,500 km<br>Topology validated | Network distance for park access |
 | **Hexagon Grid** | Generated (ArcGIS Pro) | 132 cells × 2 km²<br>WGS84 UTM Zone 44N | Spatial aggregation unit |
-| **Heat Risk Scores** | Prior analysis (Fall 2025) | SUHII × SVI × 100<br>Range: 0-416.72 | Priority zone overlay |
+| **Heat Risk Scores** | Check previous analysis (SUHII) | SUHII × SVI × 100<br>Range: 0-356.912 | Priority zone overlay |
 
 **References:**
 - OpenCity Foundation & Greater Chennai Corporation. (2024). Chennai parks dataset.
@@ -49,7 +49,7 @@ Three quantitative indicators for healthy, livable cities:
 1. Focal Statistics (50m radius, mean NDVI)
 2. Threshold: NDVI ≥ 0.35 → clustered woody vegetation
 3. Zonal Statistics → proportion of hexagon meeting threshold
-4. Output: `tree_vis` score (0-1)
+4. Output: `"3 Trees Score"` (0-1)
 
 **Reference:** Weier, J., & Herring, D. (2000). Measuring vegetation (NDVI & EVI). *NASA Earth Observatory*. https://earthobservatory.nasa.gov/features/MeasuringVegetation
 
@@ -63,8 +63,8 @@ Three quantitative indicators for healthy, livable cities:
 **Workflow:**
 1. Raster Calculator: Binary mask (NDVI > 0.4 = canopy, else non-canopy)
 2. Zonal Statistics → mean per hexagon = canopy percentage
-3. Normalize: `canopy_30 = canopy_pct / 30.0` (capped at 1.0)
-4. Output: `canopy_30` score (0-1)
+3. Normalize: `"Canopy Score" = "Chennai_grid.canopypct" / 30.0` (capped at 1.0)
+4. Output: `"Canopy Score"` (0-1)
 
 **Reference:** Carlson, T. N., & Ripley, D. A. (1997). On the relation between NDVI, fractional vegetation cover, and leaf area index. *Remote Sensing of Environment*, *62*(3), 241-252. https://doi.org/10.1016/S0034-4257(97)00104-1
 
@@ -80,7 +80,7 @@ Three quantitative indicators for healthy, livable cities:
 2. Spatial Join: Service area polygons with hexagons
 3. Calculate % of hexagon within 300m
 4. Apply scoring (raw percentage normalized 0-1)
-5. Output: `park_300` score (0-1)
+5. Output: `"Park Access Score"` (0-1)
 
 **Reference:** Apparicio, P., Abdelmajid, M., Riva, M., & Shearmur, R. (2008). Comparing alternative approaches to measuring the geographical accessibility of urban health services: Distance types and aggregation-error issues. *International Journal of Health Geographics*, *7*(1), 7. https://doi.org/10.1186/1476-072X-7-7
 
@@ -90,7 +90,7 @@ Three quantitative indicators for healthy, livable cities:
 
 **Formula:**
 ```
-greenness_333 = (tree_vis + canopy_30 + park_300) / 3
+Green Index = (3 Trees Score + Canopy Score + Park Access Score) / 3
 ```
 
 **Interpretation:**
@@ -108,9 +108,9 @@ greenness_333 = (tree_vis + canopy_30 + park_300) / 3
 
 **Thresholds:**
 - **Low Greenness:** Bottom 50% (greenness_333 < 0.030) → ~66 hexagons
-- **High Heat Risk:** Top 25% (heat_risk > 196.26) → ~33 hexagons
+- **High Heat Risk:** Top 25% (heat_risk > 134.57) → ~33 hexagons [from previous analysis -> check "../../SUHII"]
 
-**Operation:** Spatial Intersect → **10 priority zones** *(being revised)*
+**Operation:** Spatial Intersect → **10 priority zones**
 
 **Important:** This represents spatial co-occurrence (correlation), not causation. Areas with low greenness AND high heat risk would benefit most from green infrastructure investment.
 
@@ -147,7 +147,8 @@ greenness_333 = (tree_vis + canopy_30 + park_300) / 3
 
 **Data Products:**
 - `Chennai_Green_Index_3-30-300.shp` - Combined greenness scores (132 hexagons)
-- `Chennai_Priority_Zones.shp` - 10 priority intervention areas *(being revised)*
+- `Chennai_Priority_Zones.shp` - 10 priority intervention areas
+- `3-30-300_GreenIndex_Chennai` - .xls file (Attribute table of 3-30-300 Layer)
 
 ---
 
